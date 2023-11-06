@@ -1,0 +1,185 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background: #007BFF;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 3px solid #0056b3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 32px;
+}
+
+.add-sale {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.add-sale h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.add-sale label,
+.add-sale input,
+.add-sale select,
+.add-sale button {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.add-sale label {
+    font-weight: bold;
+}
+
+.add-sale input,
+.add-sale select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-sale button {
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-sale button:hover {
+    background: #0056b3;
+}
+
+.sales-list {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sales-list h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.sale-item {
+    padding: 20px;
+    background: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.search {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.search h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.search label,
+.search input,
+.search button {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.search input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search button {
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#search-customer {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#search-button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+.status-button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border: none; /* Remova a borda do botão */
+    text-decoration: none; /* Remova a sublinhado padrão do link */
+    border-radius: 5px; /* Adicione cantos arredondados ao botão */
+    margin-right: 20px; /* Espaçamento à direita do botão */
+}
+
+.status-button:hover {
+    background-color: #0056b3; /* Altere a cor de fundo quando o mouse passar sobre o botão */
+}
+
+.index-button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border: none; /* Remova a borda do botão */
+    text-decoration: none; /* Remova a sublinhado padrão do link */
+    border-radius: 5px; /* Adicione cantos arredondados ao botão */
+    margin-right: 20px; /* Espaçamento à direita do botão */
+}
+
+.index-button:hover {
+    background-color: #0056b3; /* Altere a cor de fundo quando o mouse passar sobre o botão */
+}

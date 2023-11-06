@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Vendas</title>
+    <link rel="icon" type="image/png" href="./logo/logo-semfundo.png">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Painel de Vendas</h1>
+        <a href="status.html" class="status-button">Status da Loja</a>
+    </div>
+    <div class="container">
+        <div class="add-sale">
+            <h2>Adicionar Venda</h2>
+            <form id="add-sale-form">
+                <label for="customer">Cliente:</label>
+                <input type="text" id="customer" required>
+            
+                <label for="product">Produto:</label>
+                <input type="text" id="product" required>
+            
+                <label for="value">Valor:</label>
+                <input type="text" id="value" required>
+            
+                <label for="address">Endereço:</label>
+                <input type="text" id="address" required>
+            
+                <label for="date">Data:</label>
+                <input type="date" id="calendar" required>
+            
+                <label for="salesperson">Vendedor:</label>
+                <select id="salesperson" required>
+                    <option value="Franklin">Franklin</option>
+                    <option value="Lucas">Lucas</option>
+                    <option value="Andreia">Andreia</option>
+                    <option value="Eunice">Eunice</option>
+                </select>
+            
+                <button type="submit">Adicionar Venda</button>
+            </form>
+        </div>
+        <div class="sales-list">
+            <h2>Lista de Vendas</h2>
+            <div id="search-bar">
+                <label for="search-customer">Pesquisar por Cliente:</label>
+                <input type="text" id="search-customer">
+                <button id="search-button">Pesquisar</button>
+            </div>
+            <ul id="sales-list">
+                <!-- As vendas serão adicionadas aqui via JavaScript -->
+            </ul>
+        </div>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
+</html>
