@@ -4,27 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Status da Loja</title>
+    <link rel="icon" type="image/png" href="./logo/logo-semfundo.png">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 <body>
     <div class="header">
         <h1>Status da Loja</h1>
-        <a href="index.html" class="index-button">Pagina Incial</a>
+        <a href="index.html" class="index-button">Pagina Inicial</a>
     </div>
     <div class="container">
         <div class="store-status">
             <h2>Informações da Loja</h2>
-            <p>Total de Vendas: <span id="total-sales">0</span></p>
+            <p>Total de Vendas: <span id="total-vendas">0</span></p>
             <p>Total de Clientes: <span id="total-customers">0</span></p>
-            <p>Lucro Total: <span id="total-profit">R$0.00</span></p>
+            <p>Lucro Total: <span id="lucro-total">R$0.00</span></p>
         </div>
         <div class="graph">
             <!-- Gráfico de vendas pode ser adicionado aqui -->
+            <canvas id="vendasPorVendedorChart" width="200" height="60"></canvas>
         </div>
     </div>
-    <canvas id="salesChart" width="200" height="60"></canvas>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
     <script src="./js/status.js"></script>
 </body>
 </html>
