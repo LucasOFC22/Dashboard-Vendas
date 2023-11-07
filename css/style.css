@@ -74,12 +74,17 @@ h2 {
 
 #add-sale-form {
   margin: 20px 0;
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 #add-sale-form label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
+  color: #333;
 }
 
 #add-sale-form input[type="text"],
@@ -91,22 +96,25 @@ h2 {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 #add-sale-form button {
-  background-color: #007BFF;
+  background: linear-gradient(to bottom, #007BFF, #0056b3);
   color: #fff;
   padding: 12px 24px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
-  transition: background-color 0.3s;
+  transition: background 0.3s;
 }
 
 #add-sale-form button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to bottom, #0056b3, #003f80);
 }
+
 
 .notification {
   position: fixed;
