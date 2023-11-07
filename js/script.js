@@ -1,12 +1,26 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyAhsgy-3hgII6JVv91m6HBkOatM84br7TI",
+    authDomain: "dashboard-de-vendas-a9c6a.firebaseapp.com",
+    projectId: "dashboard-de-vendas-a9c6a",
+    storageBucket: "dashboard-de-vendas-a9c6a.appspot.com",
+    messagingSenderId: "1031844698931",
+    appId: "1:1031844698931:web:5f79e7b14f4c4ac399fc46",
+    measurementId: "G-B7GSHQ10J5"
+  };
+  import { initializeApp } from 'firebase/app';
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
 document.addEventListener('DOMContentLoaded', () => {
     const addSaleForm = document.getElementById('add-sale-form');
     const salesList = document.getElementById('sales-list');
     const searchButton = document.getElementById('search-button');
     const searchCustomer = document.getElementById('search-customer');
 
-    // Carregando as vendas do armazenamento local
-    const savedSales = JSON.parse(localStorage.getItem('sales')) || [];
-    savedSales.forEach((sale) => {
+    const salesCollection = collection(db, 'sales');
+    const querySnapshot =  getDocs(salesCollection);
+    querySnapshot.forEach((doc) => {
+        const sale = doc.data();
         appendSaleToDOM(sale);
     });
 
@@ -30,10 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
             salesperson,
         };
 
-        // Adicionando a venda à lista de vendas e ao armazenamento local
-        appendSaleToDOM(sale);
-        savedSales.push(sale);
-        localStorage.setItem('sales', JSON.stringify(savedSales));
+        // Adicionando a venda ao Firebase Realtime Database
+        const newSaleRef = salesRef.push();
+        newSaleRef.set(sale);
 
         addSaleForm.reset();
     });
@@ -72,3 +85,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
