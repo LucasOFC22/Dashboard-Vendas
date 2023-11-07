@@ -1,277 +1,357 @@
 /* Defina um fundo agradável e uma paleta de cores */
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-  }
-  /* Estilize os cabeçalhos */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
 
-  /* Estilos para o cabeçalho */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+/* Estilize os cabeçalhos */
+
+/* Estilos para o cabeçalho */
 
 .header {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    transition: background-color 0.3s;
-  }
-  
-  .header:hover {
-    background-color: #0056b3;
-  }
-  
-  .header h1 {
-    font-size: 36px;
-    margin: 0;
-    padding: 10px;
-    transition: font-size 0.3s;
-  }
-  
-  .header:hover h1 {
-    font-size: 40px;
-  }
-  
-  .status-button {
-    display: inline-block;
-    background-color: #0056b3;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-size: 18px;
-    transition: background-color 0.3s;
-  }
-  
-  .status-button:hover {
-    background-color: #003f80;
-    transform: translateY(-2px);
-  }
-  
-  
-  h1 {
-    font-size: 28px;
-    color: #333;
-  }
-  
-  h2 {
-    font-size: 24px;
-    color: #555;
-  }
-  
-  /* Formulário de adicionar vendas */
-  
-  #add-sale-form {
-    margin: 20px 0;
-  }
-  
-  #add-sale-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  #add-sale-form input[type="text"],
-  #add-sale-form input[type="date"],
-  #add-sale-form select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  #add-sale-form button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
-  }
-  
-  #add-sale-form button:hover {
-    background-color: #0056b3;
-  }
-
-  .notification {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    background-color: #3498db; /* Cor de fundo da notificação */
-    color: white; /* Cor do texto da notificação */
-    padding: 15px;
-    z-index: 1;
-    transition: right 0.5s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra da notificação */
-    border-radius: 5px; /* Cantos arredondados */
-    font-size: 16px;
+  background-color: #007BFF;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  transition: background-color 0.3s;
 }
 
-/* Estilize o botão de fechar da notificação (opcional) */
+.header:hover {
+  background-color: #0056b3;
+}
+
+.header h1 {
+  font-size: 36px;
+  margin: 0;
+  padding: 10px;
+  transition: font-size 0.3s;
+}
+
+.header:hover h1 {
+  font-size: 40px;
+}
+
+.status-button {
+  display: inline-block;
+  background-color: #0056b3;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.status-button:hover {
+  background-color: #003f80;
+  transform: translateY(-2px);
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+}
+
+h2 {
+  font-size: 24px;
+  color: #555;
+}
+
+/* Formulário de adicionar vendas */
+
+#add-sale-form {
+  margin: 20px 0;
+}
+
+#add-sale-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+#add-sale-form input[type="text"],
+#add-sale-form input[type="date"],
+#add-sale-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#add-sale-form button {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+#add-sale-form button:hover {
+  background-color: #0056b3;
+}
+
+.notification {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  background-color: #3498db;
+  color: white;
+  padding: 15px;
+  z-index: 1;
+  transition: right 0.5s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
 .notification .close-button {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
 }
 
-/* Adicione animação de fundo à notificação (opcional) */
 .notification.show {
-    background-color: #4CAF50; /* Cor de fundo quando a notificação está visível */
+  background-color: #4CAF50;
 }
 
-  /* Lista de Vendas */
-  .edit-button {
-    background-color: #3498db; /* Cor de fundo do botão */
-    color: white; /* Cor do texto do botão */
-    border: none;
-    padding: 5px 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px; /* Cantos arredondados */
+/* Lista de Vendas */
+
+.edit-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-/* Estilize o botão de edição ao passar o mouse (hover) */
 .edit-button:hover {
-    background-color: #2980b9; /* Cor de fundo alterada quando o mouse passa por cima */
+  background-color: #2980b9;
 }
-  
-  #sales-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  #sales-list li {
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    transition: transform 0.2s;
-  }
-  
-  #sales-list li:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Botão de Pesquisa */
-  
-  #search-bar {
-    margin-top: 20px;
-  }
-  
-  #search-customer {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  #search-button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
-  }
-  
-  #search-button:hover {
-    background-color: #0056b3;
-  }
-  
-  #edit-form {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    width: 300px;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    text-align: center;
+
+#sales-list {
+  list-style: none;
+  padding: 0;
+}
+
+#sales-list li {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+
+#sales-list li:hover {
+  transform: translateY(-5px);
+}
+
+/* Botão de Pesquisa */
+
+#search-bar {
+  margin-top: 20px;
+}
+
+#search-customer {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#search-button {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+#search-button:hover {
+  background-color: #0056b3;
+}
+
+#edit-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  text-align: center;
 }
 
 .modal-content {
-    text-align: center;
+  text-align: center;
 }
 
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-.close-button:hover {
-    color: #ff0000; /* Cor quando o mouse passa por cima */
+close-button:hover {
+  color: #ff0000;
 }
 
 #confirm-edit-button {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px; /* Adicione margem superior ao botão para separá-lo */
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 #AtualizacaoSituacao option {
-    background-color: #fff;
-    color: #333;
+  background-color: #fff;
+  color: #333;
 }
 
 #confirm-edit-button:hover {
-    
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 #AtualizacaoSituacao {
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    color: #333;
-    padding: 5px;
-    width: 100%;
-    margin-bottom: 10px; /* Reduza a margem inferior do elemento de seleção */
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  padding: 5px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .index-button {
-    display: inline-block;
-    background-color: #0056b3;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-size: 18px;
-    transition: background-color 0.3s;
+  display: inline-block;
+  background-color: #0056b3;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.index-button:hover {
+  background-color: #003f80;
+  transform: translateY(-2px);
+}
+
+/* Adicione regras de estilo para telas menores (por exemplo, dispositivos móveis) */
+@media (max-width: 768px) {
+  .container {
+      max-width: 100%;
+      padding: 10px;
   }
-  
-  .index-button:hover {
-    background-color: #003f80;
-    transform: translateY(-2px);
+
+  .header {
+      padding: 15px;
   }
+
+  .header h1 {
+      font-size: 28px;
+  }
+
+  .status-button {
+      padding: 8px 16px;
+      font-size: 16px;
+  }
+
+  h1 {
+      font-size: 24px;
+  }
+
+  h2 {
+      font-size: 20px;
+  }
+
+  #add-sale-form input[type="text"],
+  #add-sale-form input[type="date"],
+  #add-sale-form select {
+      padding: 10px;
+      font-size: 14px;
+  }
+
+  #add-sale-form button {
+      padding: 10px 20px;
+      font-size: 16px;
+  }
+
+  .notification {
+      top: 5px;
+      right: 5px;
+      font-size: 14px;
+  }
+
+  .edit-button {
+      padding: 4px 8px;
+      font-size: 14px;
+  }
+
+  #sales-list li {
+      padding: 10px;
+      margin: 10px 0;
+  }
+
+  #search-customer {
+      padding: 10px;
+      font-size: 14px;
+  }
+
+  #search-button {
+      padding: 10px 20px;
+      font-size: 16px;
+  }
+
+  #edit-form {
+      width: 100%;
+      padding: 10px;
+  }
+
+  .close-button {
+      top: 5px;
+      right: 5px;
+      font-size: 20px;
+  }
+
+  #confirm-edit-button {
+      padding: 10px 20px;
+      font-size: 16px;
+  }
+}
