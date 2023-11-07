@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 
-// Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyAhsgy-3hgII6JVv91m6HBkOatM84br7TI",
     authDomain: "dashboard-de-vendas-a9c6a.firebaseapp.com",
@@ -11,6 +10,8 @@ const firebaseConfig = {
     appId: "1:1031844698931:web:5f79e7b14f4c4ac399fc46",
     measurementId: "G-B7GSHQ10J5"
 };
+
+import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js';
 
 // Inicialize o Firebase
 const app = initializeApp(firebaseConfig);
