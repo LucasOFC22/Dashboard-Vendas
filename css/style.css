@@ -117,7 +117,7 @@ h2 {
 
 
 .notification {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: -300px;
   background-color: #3498db;
