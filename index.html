@@ -1,42 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Vendas</title>
+<html>
+  <head>
+    <title>Sistema de Adicionar Vendas</title>
     <link rel="icon" type="image/png" href="./logo/logo-semfundo.png">
     <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
-        <h1>Painel de Vendas1</h1>
+        <h1>Painel de Vendas</h1>
         <a href="status.html" class="status-button">Status da Loja</a>
     </div>
     <div class="container">
         <div class="add-sale">
             <h2>Adicionar Venda</h2>
             <form id="add-sale-form">
-                <label for="customer">Cliente:</label>
-                <input type="text" id="customer" required>
+                <label for="cliente">Cliente:</label>
+                <input type="text" id="cliente" required>
             
-                <label for="product">Produto:</label>
-                <input type="text" id="product" required>
+                <label for="produto">Produto:</label>
+                <input type="text" id="produto" required>
             
-                <label for="value">Valor:</label>
-                <input type="text" id="value" required>
+                <label for="valor">Valor:</label>
+                <input type="text" id="valor" required>
             
-                <label for="address">Endereço:</label>
-                <input type="text" id="address" required>
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" required>
             
                 <label for="date">Data:</label>
                 <input type="date" id="calendar" required>
+
+                <label for="situacao">Situacão:</label>
+                <select id="situacao" required>
+                    <option value="Pago">Pago</option>
+                    <option value="Pago apenas a metade">Pago apenas a metade</option>
+                    <option value="Ainda não foi pago">Ainda não foi pago</option>
+                </select>
             
-                <label for="salesperson">Vendedor:</label>
-                <select id="salesperson" required>
+                <label for="vendedor">Vendedor:</label>
+                <select id="vendedor" required>
                     <option value="Franklin">Franklin</option>
                     <option value="Lucas">Lucas</option>
                     <option value="Andreia">Andreia</option>
                     <option value="Eunice">Eunice</option>
+                    <option value="Cinara">Cinara</option>
                 </select>
             
                 <button type="submit">Adicionar Venda</button>
@@ -54,8 +60,26 @@
             </ul>
         </div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script type="module" src="./js/script.js"></script>
-</body>
+    <div id="edit-form" class="modal">
+        <div class="modal-content">
+            <h2>Editar Venda</h2>
+            <span class="close-button" onclick="fecharModalDeEdicao()">&times;</span>
+            <label for="AtualizacaoSituacao">Nova Situação:</label>
+            <select id="AtualizacaoSituacao">
+                <option value="Pago">Pago</option>
+                <option value="Pago apenas a metade">Pago apenas a metade</option>
+                <option value="Ainda não foi pago">Ainda não foi pago</option>
+            </select>
+            <button id="confirm-edit-button">Confirmar Edição</button>
+        </div>
+    </div>
+    
+    <div class="notification">
+        Venda adicionada com sucesso!
+      </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
 </html>
