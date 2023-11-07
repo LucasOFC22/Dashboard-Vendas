@@ -1,85 +1,87 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sistema de Adicionar Vendas</title>
-    <link rel="icon" type="image/png" href="./logo/logo-semfundo.png">
-    <link rel="stylesheet" href="./css/style.css">
-  </head>
-  <body>
-    <div class="header">
-        <h1>Painel de Vendas</h1>
-        <a href="status.html" class="status-button">Status da Loja</a>
-    </div>
-    <div class="container">
-        <div class="add-sale">
-            <h2>Adicionar Venda</h2>
-            <form id="add-sale-form">
-                <label for="cliente">Cliente:</label>
-                <input type="text" id="cliente" required>
-            
-                <label for="produto">Produto:</label>
-                <input type="text" id="produto" required>
-            
-                <label for="valor">Valor:</label>
-                <input type="text" id="valor" required>
-            
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="endereco" required>
-            
-                <label for="date">Data:</label>
-                <input type="date" id="calendar" required>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Adicionar Vendas</title>
+  <link rel="icon" type="image/png" href="./logo/logo-semfundo.png">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Painel de Vendas</h1>
+    <a href="status.html" class="status-button">Status da Loja</a>
+  </div>
+  <div class="container">
+    <div class="add-sale">
+      <h2>Adicionar Venda</h2>
+      <form id="add-sale-form">
+        <label for="cliente">Cliente:</label>
+        <input type="text" id="cliente" required>
 
-                <label for="situacao">Situacão:</label>
-                <select id="situacao" required>
-                    <option value="Pago">Pago</option>
-                    <option value="Pago apenas a metade">Pago apenas a metade</option>
-                    <option value="Ainda não foi pago">Ainda não foi pago</option>
-                </select>
-            
-                <label for="vendedor">Vendedor:</label>
-                <select id="vendedor" required>
-                    <option value="Franklin">Franklin</option>
-                    <option value="Lucas">Lucas</option>
-                    <option value="Andreia">Andreia</option>
-                    <option value="Eunice">Eunice</option>
-                    <option value="Cinara">Cinara</option>
-                </select>
-            
-                <button type="submit">Adicionar Venda</button>
-            </form>
-        </div>
-        <div class="sales-list">
-            <h2>Lista de Vendas</h2>
-            <div id="search-bar">
-                <label for="search-customer">Pesquisar por Cliente:</label>
-                <input type="text" id="search-customer">
-                <button id="search-button">Pesquisar</button>
-            </div>
-            <ul id="sales-list">
-                <!-- As vendas serão adicionadas aqui via JavaScript -->
-            </ul>
-        </div>
+        <label for="produto">Produto:</label>
+        <input type="text" id="produto" required>
+
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor" required>
+
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" required>
+
+        <label for="date">Data:</label>
+        <input type="date" id="calendar" required>
+
+        <label for="situacao">Situacão:</label>
+        <select id="situacao" required>
+          <option value="Pago">Pago</option>
+          <option value="Pago apenas a metade">Pago apenas a metade</option>
+          <option value="Ainda não foi pago">Ainda não foi pago</option>
+        </select>
+
+        <label for="vendedor">Vendedor:</label>
+        <select id="vendedor" required>
+          <option value="Franklin">Franklin</option>
+          <option value="Lucas">Lucas</option>
+          <option value="Andreia">Andreia</option>
+          <option value="Eunice">Eunice</option>
+          <option value="Cinara">Cinara</option>
+        </select>
+
+        <button type="submit">Adicionar Venda</button>
+      </form>
     </div>
-    <div id="edit-form" class="modal">
-        <div class="modal-content">
-            <h2>Editar Venda</h2>
-            <span class="close-button" onclick="fecharModalDeEdicao()">&times;</span>
-            <label for="AtualizacaoSituacao">Nova Situação:</label>
-            <select id="AtualizacaoSituacao">
-                <option value="Pago">Pago</option>
-                <option value="Pago apenas a metade">Pago apenas a metade</option>
-                <option value="Ainda não foi pago">Ainda não foi pago</option>
-            </select>
-            <button id="confirm-edit-button">Confirmar Edição</button>
-        </div>
-    </div>
-    
-    <div class="notification">
-        Venda adicionada com sucesso!
+    <div class="sales-list">
+      <h2>Lista de Vendas</h2>
+      <div id="search-bar">
+        <label for="search-customer">Pesquisar por Cliente:</label>
+        <input type="text" id="search-customer">
+        <button id="search-button">Pesquisar</button>
       </div>
+      <ul id="sales-list">
+        <!-- As vendas serão adicionadas aqui via JavaScript -->
+      </ul>
+    </div>
+  </div>
+  <div id="edit-form" class="modal">
+    <div class="modal-content">
+      <h2>Editar Venda</h2>
+      <span class="close-button" onclick="fecharModalDeEdicao()">&times;</span>
+      <label for="AtualizacaoSituacao">Nova Situação:</label>
+      <select id="AtualizacaoSituacao">
+        <option value="Pago">Pago</option>
+        <option value="Pago apenas a metade">Pago apenas a metade</option>
+        <option value="Ainda não foi pago">Ainda não foi pago</option>
+      </select>
+      <button id="confirm-edit-button">Confirmar Edição</button>
+    </div>
+  </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
-    <script src="./js/app.js"></script>
-  </body>
+  <div class="notification">
+    Venda adicionada com sucesso!
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+  <script src="./js/app.js"></script>
+</body>
 </html>
