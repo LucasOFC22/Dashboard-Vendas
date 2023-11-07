@@ -117,6 +117,7 @@ h2 {
 
 
 .notification {
+  display: none;
   position: absolute;
   top: 0;
   right: -300px;
@@ -338,6 +339,7 @@ close-button:hover {
   }
 
   .notification {
+      display: none;
       top: 5px;
       right: 5px;
       font-size: 14px;
