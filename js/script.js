@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -45,8 +45,8 @@ addSaleForm.addEventListener('submit', async (e) => {
 
     try {
         // Adiciona a venda ao Firestore
-        const docRef = await addDoc(collection(db, 'sales'), sale);
-        console.log('Venda adicionada com ID: ', docRef.id);
+        await addDoc(collection(db, 'sales'), sale);
+        console.log('Venda adicionada com sucesso');
 
         // Limpa o formulário
         addSaleForm.reset();
@@ -63,8 +63,7 @@ searchButton.addEventListener('click', () => {
 
 // Lista todas as vendas do Firestore
 async function listSales() {
-    const q = query(collection(db, 'sales'));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(collection(db, 'sales'));
 
     querySnapshot.forEach((doc) => {
         const sale = doc.data();
