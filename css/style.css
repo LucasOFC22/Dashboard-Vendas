@@ -364,9 +364,11 @@ close-button:hover {
   }
 
   #edit-form {
-      width: 100%;
-      padding: 10px;
+    width: 90%; /* Reduz a largura para 90% da largura da tela */
+    max-width: 300px; /* Define um máximo de 300px de largura */
+    padding: 10px; /* Reduz o preenchimento */
   }
+
 
   .close-button {
       top: 5px;
