@@ -33,11 +33,23 @@ const firebaseConfig = {
   function mostrarNotificacao() {
     const notification = document.querySelector('.notification');
     notification.style.right = '10px';
-
+  
+    const closeButton = document.createElement('span');
+    closeButton.innerHTML = '&times;'; // Adicione o ícone "X" para fechar
+    closeButton.className = 'close-button';
+    notification.appendChild(closeButton);
+  
+    closeButton.addEventListener('click', () => {
+      notification.style.right = '-300px';
+      closeButton.style.display = 'none'; // Oculta o botão de fechar após fechar a notificação
+    });
+  
     setTimeout(function () {
-        notification.style.right = '-300px';
+      notification.style.right = '-300px';
+      closeButton.style.display = 'none'; // Oculta o botão de fechar após fechar a notificação automaticamente
     }, 3000);
-}
+  }
+  
   
   function adicionarVenda() {
     const cliente = document.getElementById("cliente").value;   
@@ -116,7 +128,8 @@ const firebaseConfig = {
             <p><strong>Data:</strong> ${venda.Date}</p>
             <p><strong>Situacão:</strong> ${venda.Situacao}</p>
             <p><strong>Vendedor:</strong> ${venda.Vendedor}</p>
-            <button class="edit-button" data-docid="${doc.id}">🔑 Editar</button>`;
+            <button class="edit-button" data-docid="${doc.id}">🔑 Editar</button>
+            <button class="generate-receipt-button" data-docid="${doc.id}">Gerar Recibo</button>`;
           salesList.appendChild(itemLista);
         });
       })
@@ -143,7 +156,8 @@ const firebaseConfig = {
             <p><strong>Data:</strong> ${venda.Date}</p>
             <p><strong>Situacão:</strong> ${venda.Situacao}</p>
             <p><strong>Vendedor:</strong> ${venda.Vendedor}</p>
-            <button class="edit-button" data-docid="${doc.id}">🔑 Editar</button>`
+            <button class="edit-button" data-docid="${doc.id}">🔑 Editar</button>
+            <button class="generate-receipt-button" data-docid="${doc.id}">Gerar Recibo</button>`
           salesList.appendChild(itemLista);
         });
   
@@ -222,3 +236,24 @@ function fecharModalDeEdicao() {
     const modal = document.getElementById("edit-form");
     modal.style.display = "none";
 }
+
+//gerar recibo
+
+document.getElementById("generate-pdf-button").addEventListener("click", function () {
+  // Defina o conteúdo do PDF usando a biblioteca pdfmake
+  var docDefinition = {
+    content: [
+      { text: 'Exemplo de PDF', style: 'header' },
+      'Este é um exemplo de PDF gerado no navegador.',
+    ],
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true,
+      },
+    },
+  };
+
+  // Gere o PDF
+  pdfMake.createPdf(docDefinition).download('exemplo.pdf');
+});
