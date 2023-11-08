@@ -1,3 +1,4 @@
+// ...
 document.addEventListener("DOMContentLoaded", function () {
   const firebaseConfig = {
     apiKey: "AIzaSyAhsgy-3hgII6JVv91m6HBkOatM84br7TI",
@@ -8,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const itemsRef = db.collection("estoque");
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
 
   // Defina as ações dos botões
   document.getElementById("open-edit-modal-button").addEventListener("click", function () {
@@ -42,10 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openEditModal() {
     document.getElementById("modal").style.display = "block";
-  }
 
-  function closeModal() {
-    document.getElementById("modal").style.display = "none";
+    // Adicionar ouvinte de evento para fechar o modal ao clicar fora do conteúdo
+    const modal = document.getElementById("modal");
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
   }
 
   function fillProductSelector() {
@@ -73,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then(function () {
         console.log("Produto atualizado com sucesso!");
+        displayStock();
         closeModal();
       })
       .catch(function (error) {
@@ -87,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then(function () {
         console.log("Produto adicionado com sucesso!");
+        displayStock();
         closeModal();
       })
       .catch(function (error) {
@@ -98,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
     itemsRef.doc(productName).delete()
       .then(function () {
         console.log("Produto removido com sucesso!");
+        displayStock();
         closeModal();
       })
       .catch(function (error) {
