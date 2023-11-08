@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Estoque</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Painel de Vendas</h1>
+        <a href="index.html" class="index-button">Página Inicial</a>
+        <a href="status.html" class="status-button">Status da Loja</a>
+    </div>
+
+    <div class="container">
+        <h2>Lista de Produtos no Estoque</h2>
+        <ul id="stock-list">
+            <!-- Produtos no estoque serão exibidos aqui -->
+        </ul>
+    </div>
+
+    <button id="open-modal-button" class="index-button" onclick="openModal(null, false)">Adicionar Produto</button>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Novo Produto</h2>
+            <form id="product-form">
+                <input type="text" id="product-name" placeholder="Nome do Produto" required>
+                <input type="number" id="product-quantity" placeholder="Quantidade" required>
+                <button id="save-button">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>    
+    <script src="./js/estoque.js"></script>
+</body>
+</html>
