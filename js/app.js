@@ -11,7 +11,7 @@ const firebaseConfig = {
   const searchButton = document.getElementById("search-button");
   const salesList = document.getElementById("sales-list");
   const modal = document.getElementById("myModal");
-  
+  const productSelect = document.getElementById("produto");
   addSaleForm.addEventListener("submit", function (e) {
     e.preventDefault();
     adicionarVenda();
@@ -60,19 +60,24 @@ const firebaseConfig = {
     const situacao = document.getElementById("situacao").value;
     const vendedor = document.getElementById("vendedor").value;
 
-    // No momento em que você adiciona uma venda bem-sucedida
+    if (!produto) {
+      alert("Selecione um produto antes de adicionar a venda.");
+      return;
+  }
+  const estoqueElement = document.getElementById("estoque-produto");
+    const estoqueAtual = parseInt(estoqueElement.textContent, 10);
+    if (estoqueAtual < 1) {
+        alert("Produto fora de estoque. Não é possível adicionar a venda.");
+        return;
+    }
     const incrementarVendas = () => {
-        // Crie uma referência ao documento "total"
         const totalDocRef = db.collection("total").doc("total");
     
         db.runTransaction((transaction) => {
-            // Tente buscar o documento "total"
             return transaction.get(totalDocRef).then((totalDoc) => {
                 if (!totalDoc.exists) {
-                    // Se o documento não existir, crie-o com "Vendas" igual a 1
                     transaction.set(totalDocRef, { Vendas: 1 });
                 } else {
-                    // Caso contrário, incremente o valor atual de "Vendas"
                     const vendasAnteriores = totalDoc.data().Vendas || 0;
                     transaction.update(totalDocRef, { Vendas: vendasAnteriores + 1 });
                 }
@@ -83,6 +88,23 @@ const firebaseConfig = {
             console.error("Erro ao incrementar as vendas: ", error);
         });
     };
+
+    const produtoRef = db.collection("estoque").doc(produto);
+    db.runTransaction((transaction) => {
+        return transaction.get(produtoRef).then((doc) => {
+            const quantidadeAtual = doc.data().quantity;
+            if (quantidadeAtual >= 1) {
+                transaction.update(produtoRef, { quantity: quantidadeAtual - 1 });
+            } else {
+                alert("Produto fora de estoque. Não é possível adicionar a venda.");
+            }
+        });
+    }).then(() => {
+        console.log("Estoque atualizado com sucesso.");
+        fillProductSelector();
+    }).catch((error) => {
+        console.error("Erro ao atualizar o estoque: ", error);
+    });
     
     // Chame a função para incrementar as vendas
     incrementarVendas();
@@ -109,6 +131,31 @@ const firebaseConfig = {
         console.error("Erro ao adicionar venda: ", error);
       });
   }
+
+  function fillProductSelector() {
+    productSelect.innerHTML = '<option value="">Selecione um produto</option>';
+    db.collection("estoque")
+        .where("quantity", ">", 0) // Filtrar produtos com quantidade maior que zero
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const product = doc.data();
+                const option = document.createElement("option");
+                option.value = product.name;
+                option.textContent = product.name;
+                productSelect.appendChild(option);
+
+                // Atualize o estoque exibido no elemento de estoque do produto selecionado
+                option.addEventListener("click", () => {
+                    const estoqueElement = document.getElementById("estoque-produto");
+                    estoqueElement.textContent = product.quantity;
+                });
+            });
+        })
+        .catch((error) => {
+            console.error("Erro ao preencher o seletor de produtos: ", error);
+        });
+}
   
   function atualizarListaDeVendas() {
     salesList.innerHTML = "";
@@ -172,6 +219,7 @@ const firebaseConfig = {
   
   
   atualizarListaDeVendas();
+  fillProductSelector();
 
   // EDIT SITUACAO
 
