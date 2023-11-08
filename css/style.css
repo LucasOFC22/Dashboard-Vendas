@@ -41,23 +41,6 @@ body {
   font-size: 40px;
 }
 
-.status-button {
-  display: inline-block;
-  background: linear-gradient(to bottom, #0056b3, #003f80);
-  color: #fff;
-  padding: 12px 24px;
-  text-decoration: none;
-  border-radius: 10px;
-  margin-top: 20px;
-  font-size: 18px;
-  transition: background 0.3s, transform 0.2s;
-  cursor: pointer;
-}
-
-.status-button:hover {
-  background: linear-gradient(to bottom, #003f80, #002a53);
-}
-
 /* Títulos */
 h1 {
   font-size: 28px;
@@ -464,6 +447,26 @@ h2 {
   background: linear-gradient(to bottom, #0056b3, #003f80);
 }
 
+/* Lista De Produtos no Estoque */
+
+#stock-list {
+  list-style: none;
+  padding: 0;
+}
+
+#stock-list li {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+
+#stock-list li:hover {
+  transform: translateY(-5px);
+}
+
 
 /* Adicione regras de estilo para telas menores (por exemplo, dispositivos móveis) */
 @media (max-width: 768px) {
@@ -480,7 +483,7 @@ h2 {
     font-size: 28px;
   }
 
-  .status-button {
+  .index-button {
     padding: 8px 16px;
     font-size: 16px;
   }
