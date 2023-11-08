@@ -128,8 +128,7 @@ const firebaseConfig = {
             <p><strong>Data:</strong> ${venda.Date}</p>
             <p><strong>Situacão:</strong> ${venda.Situacao}</p>
             <p><strong>Vendedor:</strong> ${venda.Vendedor}</p>
-            <button class="edit-button" data-docid="${doc.id}">🔑 Editar</button>
-            <button class="generate-receipt-button" data-docid="${doc.id}">Gerar Recibo</button>`;
+            <button class="edit-button" data-docid="${doc.id}">🔑 Editar</button>`;
           salesList.appendChild(itemLista);
         });
       })
@@ -156,8 +155,7 @@ const firebaseConfig = {
             <p><strong>Data:</strong> ${venda.Date}</p>
             <p><strong>Situacão:</strong> ${venda.Situacao}</p>
             <p><strong>Vendedor:</strong> ${venda.Vendedor}</p>
-            <button class="edit-button" data-docid="${doc.id}">🔑 Editar</button>
-            <button class="generate-receipt-button" data-docid="${doc.id}">Gerar Recibo</button>`
+            <button class="edit-button" data-docid="${doc.id}">🔑 Editar</button>`
           salesList.appendChild(itemLista);
         });
   
@@ -236,40 +234,3 @@ function fecharModalDeEdicao() {
     const modal = document.getElementById("edit-form");
     modal.style.display = "none";
 }
-
-//gerar recibo
-
-document.addEventListener('click', function (event) {
-  if (event.target.classList.contains('generate-receipt-button')) {
-    const docId = event.target.getAttribute('data-docid');
-
-    // Recupere os detalhes da venda, por exemplo, em um objeto venda
-    const venda = {
-      Cliente: 'Cliente de Exemplo',
-      Produto: 'Produto de Exemplo',
-      Valor: 100.00,
-      Data: '2023-11-07',
-      // Outros detalhes da venda
-    };
-
-    // Crie o conteúdo do recibo
-    const content = [
-      { text: 'Recibo de Venda', style: 'header' },
-      { text: `Cliente: ${venda.Cliente}` },
-      { text: `Produto: ${venda.Produto}` },
-      { text: `Valor: R$ ${venda.Valor.toFixed(2)}` },
-      { text: `Data: ${venda.Data}` },
-      // Outros detalhes da venda
-    ];
-
-    // Defina estilos para o PDF
-    const styles = {
-      header: { fontSize: 18, bold: true, margin: [0, 0, 0, 10] },
-    };
-
-    const docDefinition = { content, styles };
-
-    // Crie o PDF
-    pdfmake.createPdf(docDefinition).download('receipt.pdf');
-  }
-});
