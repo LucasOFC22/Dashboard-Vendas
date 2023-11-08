@@ -239,21 +239,37 @@ function fecharModalDeEdicao() {
 
 //gerar recibo
 
-document.getElementById("generate-pdf-button").addEventListener("click", function () {
-  // Defina o conteúdo do PDF usando a biblioteca pdfmake
-  var docDefinition = {
-    content: [
-      { text: 'Exemplo de PDF', style: 'header' },
-      'Este é um exemplo de PDF gerado no navegador.',
-    ],
-    styles: {
-      header: {
-        fontSize: 18,
-        bold: true,
-      },
-    },
-  };
+document.addEventListener('click', function (event) {
+  if (event.target.classList.contains('generate-receipt-button')) {
+    const docId = event.target.getAttribute('data-docid');
 
-  // Gere o PDF
-  pdfMake.createPdf(docDefinition).download('exemplo.pdf');
+    // Recupere os detalhes da venda, por exemplo, em um objeto venda
+    const venda = {
+      Cliente: 'Cliente de Exemplo',
+      Produto: 'Produto de Exemplo',
+      Valor: 100.00,
+      Data: '2023-11-07',
+      // Outros detalhes da venda
+    };
+
+    // Crie o conteúdo do recibo
+    const content = [
+      { text: 'Recibo de Venda', style: 'header' },
+      { text: `Cliente: ${venda.Cliente}` },
+      { text: `Produto: ${venda.Produto}` },
+      { text: `Valor: R$ ${venda.Valor.toFixed(2)}` },
+      { text: `Data: ${venda.Data}` },
+      // Outros detalhes da venda
+    ];
+
+    // Defina estilos para o PDF
+    const styles = {
+      header: { fontSize: 18, bold: true, margin: [0, 0, 0, 10] },
+    };
+
+    const docDefinition = { content, styles };
+
+    // Crie o PDF
+    pdfmake.createPdf(docDefinition).download('receipt.pdf');
+  }
 });
