@@ -557,9 +557,18 @@ button:hover {
 
   .notification {
     display: none;
-    top: 5px;
-    right: 5px;
-    font-size: 14px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    z-index: 1;
+    transition: top 0.5s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
   }
 
   .edit-button {
