@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Estoque</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Painel de Vendas</h1>
+        <a href="index.html" class="index-button">Página Inicial</a>
+        <a href="status.html" class="index-button">Status da Loja</a>
+        <button id="logout-button" style="display: none;">Logout</button>
+    </div>
+<div class="login-container" id="login-container">
+    <h2>Faça o login</h2>
+    <form id="login-form">
+        <label for="username">Nome de usuário:</label>
+        <input type="text" id="username" required>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" required>
+        <button type="button" id="login-button">Login</button>
+    </form>
+</div>
+
+<div id="container" class="container" style="display: none;">
+        <h2>Lista de Produtos no Estoque</h2>
+        <button id="open-edit-modal-button" class="index-button" >Gerenciar Estoque</button>
+        <ul id="stock-list">
+            <!-- Produtos no estoque serão exibidos aqui -->
+        </ul>
+    </div>
+
+<div id="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Gerenciar Estoque</h2>
+      <span class="close-button" onclick="document.getElementById('modal').style.display = 'none'">&times;</span>
+      <label for="product-name">Nome do Produto a ser Cadastrado:</label>
+      <input type="text" id="product-name">
+      <button id="add-product-button">Cadastrar</button>
+  
+      <br>
+      <br>
+  
+      <label for="product-select">Selecione um produto:</label>
+      <select id="product-select"></select>
+      <label for="product-quantity">Estoque:</label>
+      <input type="number" id="product-quantity">
+  
+      <button id="save-button">Salvar</button>
+      <button id="remove-button">Remover</button>
+    </div>
+  </div>
+
+<div class="notification"></div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>
