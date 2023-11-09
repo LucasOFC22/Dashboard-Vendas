@@ -138,7 +138,14 @@ db.runTransaction((transaction) => {
   }
 
   function fillProductSelector() {
+    const productSelect = document.getElementById("produto");
+    if (!productSelect) {
+        console.error("Elemento product-select não encontrado na página.");
+        return;
+    }
+
     productSelect.innerHTML = '<option value="">Selecione um produto</option>';
+
     db.collection("estoque")
         .where("quantity", ">", 0) // Filtrar produtos com quantidade maior que zero
         .get()
@@ -149,18 +156,48 @@ db.runTransaction((transaction) => {
                 option.value = product.name;
                 option.textContent = product.name;
                 productSelect.appendChild(option);
+            });
 
-                // Atualize o estoque exibido no elemento de estoque do produto selecionado
-                option.addEventListener("click", () => {
-                    const estoqueElement = document.getElementById("estoque-produto");
-                    estoqueElement.textContent = product.quantity;
-                });
+            productSelect.addEventListener("change", function () {
+                const selectedProduct = productSelect.value;
+
+                if (selectedProduct) {
+                    const productRef = db.collection("estoque").doc(selectedProduct);
+                    productRef.get().then((doc) => {
+                        if (doc.exists) {
+                            const productData = doc.data();
+                            const valorInput = document.getElementById("valor")
+
+                            if (valorInput) {
+                                valorInput.value = productData.value || 0;
+                            } else {
+                                console.error("Elemento valor ou estoque-produto não encontrado na página.");
+                            }
+                        } else {
+                            console.error("Documento não encontrado na base de dados.");
+                        }
+                    }).catch((error) => {
+                        console.error("Erro ao obter dados do produto selecionado: ", error);
+                    });
+                }
             });
         })
         .catch((error) => {
             console.error("Erro ao preencher o seletor de produtos: ", error);
         });
 }
+
+
+// Desativar a entrada de texto com id "valor"
+const valorInput = document.getElementById("valor");
+if (valorInput) {
+    valorInput.readOnly = true;
+} else {
+    console.error("Elemento valor não encontrado na página.");
+}
+
+// Desativar a entrada de texto com id "valor"
+document.getElementById("valor").readOnly = true;
   
   function atualizarListaDeVendas() {
     salesList.innerHTML = "";

@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const loginContainer = document.getElementById("login-container");
   const logoutButton = document.getElementById("logout-button");
   const container = document.getElementById("container");
+  const valueInput = document.getElementById("value-name");
 
   function mostrarNotificacao(mensagem, tipo) {
     const notification = document.querySelector('.notification');
@@ -56,21 +57,36 @@ document.addEventListener("DOMContentLoaded", function () {
               container.style.display = "block";
               loginContainer.style.display = "none";
               const itemsRef = db.collection("estoque");
+              
 
               function closeModal() {
                 document.getElementById("modal").style.display = "none";
               }
 
+              document.getElementById("atualizar-lista-estoque").addEventListener("click", function () {
+                mostrarNotificacao("Lista de Estoque atualizada com sucesso!", "atualizar-lista");
+                displayStock()
+
+              })
+
               document.getElementById("open-edit-modal-button").addEventListener("click", function () {
                 openEditModal();
                 fillProductSelector();
+                document.getElementById("product-name").value = "";
+                document.getElementById("value-name").value = "";
+                document.getElementById("product-quantity").value = "";
+                document.getElementById("product-value").value = "";
               });
             
               document.getElementById("add-product-button").addEventListener("click", function () {
                 const newProductName = document.getElementById("product-name").value;
-                if (newProductName) {
-                  addProduct(newProductName, 0); // Define o estoque inicial como 0
+                const newProductValue = parseFloat(valueInput.value);
+          
+                if (newProductName && !isNaN(newProductValue)) {
+                  addProduct(newProductName, 0, newProductValue);
                   closeModal();
+                } else {
+                  mostrarNotificacao("Preencha corretamente o nome e o valor do produto.", "preencha-corretamente");
                 }
               });
             
@@ -106,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
               function fillProductSelector() {
                 const productSelect = document.getElementById("product-select");
                 productSelect.innerHTML = '<option value="">Selecione um produto</option>';
-            
+              
                 itemsRef.get()
                   .then(function (querySnapshot) {
                     querySnapshot.forEach(function (doc) {
@@ -116,6 +132,30 @@ document.addEventListener("DOMContentLoaded", function () {
                       option.textContent = item.name;
                       productSelect.appendChild(option);
                     });
+              
+                    // Evento que é acionado quando o usuário seleciona um produto
+                    productSelect.addEventListener("change", function () {
+                      const selectedProduct = productSelect.value;
+              
+                      if (selectedProduct) {
+                        const productRef = itemsRef.doc(selectedProduct);
+                        productRef.get().then((doc) => {
+                          if (doc.exists) {
+                            const productData = doc.data();
+              
+                            // Preencher os campos do modal com os valores recuperados
+                            document.getElementById("product-quantity").value = productData.quantity || 0;
+                            document.getElementById("product-value").value = productData.value || 0;
+                          } else {
+                            console.error("Documento não encontrado na base de dados.");
+                          }
+                        });
+                      } else {
+                        // Limpar os campos se nenhum produto estiver selecionado
+                        document.getElementById("product-quantity").value = "";
+                        document.getElementById("product-value").value = "";
+                      }
+                    });
                   })
                   .catch(function (error) {
                     console.error("Erro ao preencher o seletor de produtos: ", error);
@@ -123,8 +163,10 @@ document.addEventListener("DOMContentLoaded", function () {
               }
             
               function updateProduct(productName, newQuantity) {
+    const valueProdut = document.getElementById("product-value").value
                 itemsRef.doc(productName).update({
-                  quantity: newQuantity
+                  quantity: newQuantity,
+                  value: valueProdut
                 })
                   .then(function () {
                     mostrarNotificacao("Produto atualizado com sucesso!", "Produto-Atualizado");
@@ -136,10 +178,11 @@ document.addEventListener("DOMContentLoaded", function () {
                   });
               }
             
-              function addProduct(productName, quantity) {
+              function addProduct(productName, quantity, value) {
                 itemsRef.doc(productName).set({
                   name: productName,
                   quantity: quantity,
+                  value: value,
                   sales: 0
                 })
                   .then(function () {
@@ -174,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     querySnapshot.forEach(function (doc) {
                       const item = doc.data();
                       const li = document.createElement("li");
-                      li.textContent = `${item.name} - Estoque: ${item.quantity}`;
+                      li.textContent = `${item.name} - Estoque: ${item.quantity} Valor: ${item.value}`;
                       stockList.appendChild(li);
                     });
                   })
