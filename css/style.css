@@ -1,4 +1,11 @@
 /* Estilos gerais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos Gerais */
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: linear-gradient(to bottom, #e0e0e0, #e0e0e0);
@@ -13,21 +20,21 @@ body {
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 /* Estilos do cabeçalho */
 .header {
-  background: linear-gradient(to bottom, #007BFF, #0056b3);
+  background: #3498db; /* Alterei a cor de fundo para um azul mais suave */
   color: #fff;
   padding: 20px;
   transition: background-color 0.3s;
-  border-radius: 10px 10px 0 0;
+  border-radius: 0 0 10px 10px; /* Ajustei as bordas para um estilo mais uniforme */
 }
 
 .header:hover {
-  background-color: #0056b3;
+  background-color: #2980b9; /* Cor de destaque mais suave ao passar o mouse */
 }
 
 .header h1 {
@@ -97,9 +104,8 @@ h2 {
 }
 
 .notification {
-  position: absolute;
+  position: fixed;
   top: 0;
-  right: -300px;
   background-color: #3498db;
   color: white;
   padding: 15px;
@@ -513,6 +519,52 @@ button:hover {
 #stock-list li:hover {
   transform: translateY(-5px);
 }
+
+/* Relatorio Mensal */
+
+#relatorio {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.notificacao-estoque-baixo {
+  color: #ff0000; /* Cor vermelha */
+  font-weight: bold;
+}
+
+.notificacao-produto-vendendo {
+  color: #00ff00; /* Cor verde */
+  font-weight: bold;
+}
+
+#relatorio h2 {
+  text-align: center;
+}
+
+#relatorio-mensal {
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #ff0000;
+}
+
 
 
 /* Adicione regras de estilo para telas menores (por exemplo, dispositivos móveis) */
