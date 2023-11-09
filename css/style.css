@@ -458,7 +458,29 @@ button:hover {
   background-color: #f4f4f4;
   color: #333;
 }
+
+#value-name {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f4f4f4;
+  color: #333;
+}
 #product-quantity {
+  width: 100%;
+  padding: 7px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+#product-value {
   width: 100%;
   padding: 7px;
   margin-bottom: 20px;
@@ -499,6 +521,25 @@ button:hover {
 #remove-button:hover {
   background: linear-gradient(to bottom, #0056b3, #003f80);
 }
+
+.atualizar-button {
+  display: inline-block;
+  background-color: #0056b3;
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 14px;
+  margin-left: auto;
+  transition: background-color 0.3s;
+}
+
+.atualizar-button:hover {
+  background-color: #003f80;
+  transform: translateY(-2px);
+}
+
 
 /* Lista De Produtos no Estoque */
 
