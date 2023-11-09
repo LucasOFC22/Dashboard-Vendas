@@ -28,6 +28,7 @@
 <div id="container" class="container" style="display: none;">
         <h2>Lista de Produtos no Estoque</h2>
         <button id="open-edit-modal-button" class="index-button" >Gerenciar Estoque</button>
+        <button id="gerar-relatorio-mensal" class="index-button">Gerar Relatório Mensal</button>
         <ul id="stock-list">
             <!-- Produtos no estoque serão exibidos aqui -->
         </ul>
@@ -53,7 +54,11 @@
       <button id="remove-button">Remover</button>
     </div>
   </div>
-
+  <div id="relatorio" class="container" style="display: none;">
+    <h2>Relatórios do Sistema</h2>
+    <span class="close-button" onclick="document.getElementById('relatorio').style.display = 'none'">&times;</span>
+    <div id="relatorio-mensal"></div>
+</div>
 <div class="notification"></div>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>

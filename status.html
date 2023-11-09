@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="./logo/logo-semfundo.png">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
     <div class="header">
@@ -16,7 +17,7 @@
     </div>
     <div class="container">
         <div class="store-status">
-            <h2>Informações da Loja</h2>
+            <h2>Relatorio da Loja</h2>
             <p>Total de Vendas: <span id="total-vendas">0</span></p>
             <p>Total de Clientes: <span id="total-customers">0</span></p>
             <p>Lucro Total: <span id="lucro-total">R$0.00</span></p>
@@ -26,6 +27,7 @@
             <canvas id="vendasPorVendedorChart" width="200" height="60"></canvas>
         </div>
     </div>
+    
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
     <script src="./js/status.js"></script>
