@@ -30,14 +30,25 @@ const firebaseConfig = {
     }
   });
 
-  function mostrarNotificacao() {
+  function mostrarNotificacao(mensagem, tipo) {
     const notification = document.querySelector('.notification');
     notification.style.right = '10px';
   
+    // Remover mensagens antigas
+    const oldMessages = document.querySelectorAll('.notification-content');
+    oldMessages.forEach(oldMessage => oldMessage.remove());
+  
+    const notificationContent = document.createElement('div');
+    notificationContent.className = 'notification-content';
+    notificationContent.textContent = mensagem;
+    notification.appendChild(notificationContent);
+  
     setTimeout(function () {
       notification.style.right = '-300px';
-      closeButton.style.display = 'none'; // Oculta o botão de fechar após fechar a notificação automaticamente
     }, 3000);
+  
+    // Adicione um controle de tipo de notificação (pode ser uma classe CSS, por exemplo)
+    notification.classList.add(tipo);
   }
   
   
@@ -51,13 +62,13 @@ const firebaseConfig = {
     const vendedor = document.getElementById("vendedor").value;
 
     if (!produto) {
-      alert("Selecione um produto antes de adicionar a venda.");
+      mostrarNotificacao("Selecione um produto antes de adicionar a venda.", "Selecione");
       return;
   }
   const estoqueElement = document.getElementById("estoque-produto");
     const estoqueAtual = parseInt(estoqueElement.textContent, 10);
     if (estoqueAtual < 1) {
-        alert("Produto fora de estoque. Não é possível adicionar a venda.");
+      mostrarNotificacao("Produto fora de estoque. Não é possível adicionar a venda.", "Produto-fora-de-estoque");
         return;
     }
     const incrementarVendas = () => {
@@ -73,7 +84,7 @@ const firebaseConfig = {
                 }
             });
         }).then(() => {
-            console.log("Vendas incrementadas com sucesso.");
+          mostrarNotificacao("Vendas incrementadas com sucesso.", "Selecione");
         }).catch((error) => {
             console.error("Erro ao incrementar as vendas: ", error);
         });
@@ -86,11 +97,11 @@ const firebaseConfig = {
             if (quantidadeAtual >= 1) {
                 transaction.update(produtoRef, { quantity: quantidadeAtual - 1 });
             } else {
-                alert("Produto fora de estoque. Não é possível adicionar a venda.");
+              mostrarNotificacao("Produto fora de estoque. Não é possível adicionar a venda.", "Produto-fora-de-estoque");
             }
         });
     }).then(() => {
-        console.log("Estoque atualizado com sucesso.");
+      mostrarNotificacao("Estoque atualizado com sucesso.", "estoque-atualizado");
         fillProductSelector();
     }).catch((error) => {
         console.error("Erro ao atualizar o estoque: ", error);
@@ -112,8 +123,7 @@ const firebaseConfig = {
         Vendedor: vendedor,
       })
       .then(function () {
-        console.log("Venda adicionada com sucesso.");
-        mostrarNotificacao();
+        mostrarNotificacao("Venda adicionada com sucesso.", "venda-adicionada");
         addSaleForm.reset();
         atualizarListaDeVendas();
       })
@@ -243,7 +253,7 @@ function abrirModalDeEdicao(docId) {
                     
                     modal.style.display = "block";
                 } else {
-                    console.log("Documento não encontrado.");
+                  mostrarNotificacao("Documento não encontrado.", "nao-encontrado");
                 }
             })
             .catch((error) => {
@@ -258,7 +268,7 @@ function editarSituacaoVenda(docId, novaSituacao) {
             .doc(docId)
             .update({ Situacao: novaSituacao })
             .then(function () {
-                console.log("Venda editada com sucesso.");
+              mostrarNotificacao("Situação editada com sucesso.", "vendas-editada");
                 fecharModalDeEdicao();
                 atualizarListaDeVendas();
             })
