@@ -29,6 +29,7 @@
         <h2>Lista de Produtos no Estoque</h2>
         <button id="open-edit-modal-button" class="index-button" >Gerenciar Estoque</button>
         <button id="gerar-relatorio-mensal" class="index-button">Gerar Relatório Mensal</button>
+        <button id="atualizar-lista-estoque" class="atualizar-button">Atualizar</button>
         <ul id="stock-list">
             <!-- Produtos no estoque serão exibidos aqui -->
         </ul>
@@ -40,6 +41,9 @@
       <span class="close-button" onclick="document.getElementById('modal').style.display = 'none'">&times;</span>
       <label for="product-name">Nome do Produto a ser Cadastrado:</label>
       <input type="text" id="product-name">
+
+      <label for="value-name">Quantidade:</label>
+      <input type="number" id="value-name" placeholder="Digite a quantidade">
       <button id="add-product-button">Cadastrar</button>
   
       <br>
@@ -49,6 +53,8 @@
       <select id="product-select"></select>
       <label for="product-quantity">Estoque:</label>
       <input type="number" id="product-quantity">
+      <label for="product-value">Valor:</label>
+      <input type="number" id="product-value">
   
       <button id="save-button">Salvar</button>
       <button id="remove-button">Remover</button>
