@@ -34,16 +34,6 @@ const firebaseConfig = {
     const notification = document.querySelector('.notification');
     notification.style.right = '10px';
   
-    const closeButton = document.createElement('span');
-    closeButton.innerHTML = '&times;'; // Adicione o ícone "X" para fechar
-    closeButton.className = 'close-button';
-    notification.appendChild(closeButton);
-  
-    closeButton.addEventListener('click', () => {
-      notification.style.right = '-300px';
-      closeButton.style.display = 'none'; // Oculta o botão de fechar após fechar a notificação
-    });
-  
     setTimeout(function () {
       notification.style.right = '-300px';
       closeButton.style.display = 'none'; // Oculta o botão de fechar após fechar a notificação automaticamente
