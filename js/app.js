@@ -91,21 +91,26 @@ const firebaseConfig = {
     };
 
     const produtoRef = db.collection("estoque").doc(produto);
-    db.runTransaction((transaction) => {
-        return transaction.get(produtoRef).then((doc) => {
-            const quantidadeAtual = doc.data().quantity;
-            if (quantidadeAtual >= 1) {
-                transaction.update(produtoRef, { quantity: quantidadeAtual - 1 });
-            } else {
-              mostrarNotificacao("Produto fora de estoque. Não é possível adicionar a venda.", "Produto-fora-de-estoque");
-            }
-        });
-    }).then(() => {
-      mostrarNotificacao("Estoque atualizado com sucesso.", "estoque-atualizado");
-        fillProductSelector();
-    }).catch((error) => {
-        console.error("Erro ao atualizar o estoque: ", error);
-    });
+
+db.runTransaction((transaction) => {
+  return transaction.get(produtoRef).then((doc) => {
+    const quantidadeAtual = doc.data().quantity;
+    const salesAtual = doc.data().sales;
+
+    if (quantidadeAtual >= 1) {
+      // Atualiza a quantidade no estoque
+      transaction.update(produtoRef, { quantity: quantidadeAtual - 1 });
+      transaction.update(produtoRef, { sales: salesAtual + 1 });
+    } else {
+      mostrarNotificacao("Produto fora de estoque. Não é possível adicionar a venda.", "Produto-fora-de-estoque");
+    }
+  });
+}).then(() => {
+  mostrarNotificacao("Estoque atualizado com sucesso.", "estoque-atualizado");
+  fillProductSelector();
+}).catch((error) => {
+  console.error("Erro ao atualizar o estoque: ", error);
+});
     
     // Chame a função para incrementar as vendas
     incrementarVendas();

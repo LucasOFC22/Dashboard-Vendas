@@ -139,7 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
               function addProduct(productName, quantity) {
                 itemsRef.doc(productName).set({
                   name: productName,
-                  quantity: quantity
+                  quantity: quantity,
+                  sales: 0
                 })
                   .then(function () {
                     mostrarNotificacao("Produto adicionado com sucesso!", "Produto-Adicionado");
@@ -181,8 +182,76 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error("Erro ao recuperar itens do estoque: ", error);
                   });
               }
-            
-              // Chame a função para exibir o estoque quando a página carregar
+
+              function exibirNotificacoesNoRelatorio(relatorio) {
+                const relatorioMensal = document.getElementById("relatorio-mensal");
+              
+                // Limpa as notificações anteriores
+                relatorioMensal.innerHTML = '';
+              
+                // Verifica se relatorio é uma matriz e não está indefinido
+                if (Array.isArray(relatorio) && relatorio.length > 0) {
+                  // Exibe cada notificação no container
+                  relatorio.forEach((notificacao) => {
+                    const notificacaoElement = document.createElement('div');
+                    notificacaoElement.classList.add('notification-item');
+                    if (notificacao.tipo === 'Estoque Baixo') {
+                      notificacaoElement.classList.add('notificacao-estoque-baixo');
+                    }
+                    if (notificacao.tipo === 'Produto Vendendo') {
+                      notificacaoElement.classList.add('notificacao-produto-vendendo');
+                    }
+                    notificacaoElement.textContent = `[${notificacao.tipo}] ${notificacao.mensagem}`;
+                    relatorioMensal.appendChild(notificacaoElement);
+                  });
+                }
+              }
+              
+              function gerarRelatorioMensal(estoqueProdutos) {
+                const relatorio = [];
+              
+                // Adicione lógica para verificar produtos com estoque igual ou abaixo de 5 e vendendo bem
+                estoqueProdutos.forEach((produto) => {
+                  if (produto.quantity <= 5) {
+                    const notificacao = {
+                      tipo: 'Estoque Baixo',
+                      mensagem: `O estoque do produto ${produto.name} está baixo. Apenas ${produto.quantity} unidades disponíveis.`,
+                    };
+                    relatorio.push(notificacao);
+                  }
+              
+                  if (produto.sales >= 20) {
+                    const notificacaoVendas = {
+                      tipo: 'Produto Vendendo',
+                      mensagem: `O produto ${produto.name}, já vendeu ${produto.sales} unidades, está vendendo muito. Recomendo repor o estoque!`,
+                    };
+                    relatorio.push(notificacaoVendas);
+                  }
+                });
+              
+                // Exibe as notificações
+                exibirNotificacoesNoRelatorio(relatorio);
+              }
+              
+              document.getElementById("gerar-relatorio-mensal").addEventListener("click", function () {
+                document.getElementById("relatorio").style.display = "block";
+              
+                itemsRef.get()
+                  .then(function (querySnapshot) {
+                    const estoqueProdutos = [];
+                    querySnapshot.forEach(function (doc) {
+                      const produto = doc.data();
+                      estoqueProdutos.push(produto);
+                    });
+              
+                    // Chama a função gerarRelatorioMensal agora que ela está definida
+                    gerarRelatorioMensal(estoqueProdutos);
+                  })
+                  .catch(function (error) {
+                    console.error("Erro ao obter produtos do estoque: ", error);
+                  });
+              });
+
               displayStock();
             } else {
               mostrarNotificacao("Senha incorreta. Tente novamente.", "Login-password-incorreta");
