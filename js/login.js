@@ -13,19 +13,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const logoutButton = document.getElementById("logout-button");
   const container = document.getElementById("container");
 
-  function mostrarNotificacao(mensagem) {
+  function mostrarNotificacao(mensagem, tipo) {
     const notification = document.querySelector('.notification');
     notification.style.right = '10px';
-
+  
+    // Remover mensagens antigas
+    const oldMessages = document.querySelectorAll('.notification-content');
+    oldMessages.forEach(oldMessage => oldMessage.remove());
+  
     const notificationContent = document.createElement('div');
     notificationContent.className = 'notification-content';
     notificationContent.textContent = mensagem;
     notification.appendChild(notificationContent);
-
+  
     setTimeout(function () {
       notification.style.right = '-300px';
     }, 3000);
-}
+  
+    // Adicione um controle de tipo de notificação (pode ser uma classe CSS, por exemplo)
+    notification.classList.add(tipo);
+  }
+  
 
 
   loginButton.addEventListener("click", () => {
@@ -43,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const storedPassword = userDoc.data().password;
 
             if (password === storedPassword) {
-              mostrarNotificacao("Login bem-sucedido!");
+              mostrarNotificacao("Login bem-sucedido!", "login");
               logoutButton.style.display = "block";
               container.style.display = "block";
               loginContainer.style.display = "none";
@@ -119,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   quantity: newQuantity
                 })
                   .then(function () {
-                    mostrarNotificacao("Produto atualizado com sucesso!");
+                    mostrarNotificacao("Produto atualizado com sucesso!", "Produto-Atualizado");
                     displayStock();
                     closeModal();
                   })
@@ -134,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   quantity: quantity
                 })
                   .then(function () {
-                    mostrarNotificacao("Produto adicionado com sucesso!");
+                    mostrarNotificacao("Produto adicionado com sucesso!", "Produto-Adicionado");
                     displayStock();
                     closeModal();
                   })
@@ -146,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
               function removeProduct(productName) {
                 itemsRef.doc(productName).delete()
                   .then(function () {
-                    mostrarNotificacao("Produto removido com sucesso!");
+                    mostrarNotificacao("Produto removido com sucesso!", "Produto-Removido");
                     displayStock();
                     closeModal();
                   })
@@ -177,17 +185,17 @@ document.addEventListener("DOMContentLoaded", function () {
               // Chame a função para exibir o estoque quando a página carregar
               displayStock();
             } else {
-              mostrarNotificacao("Senha incorreta. Tente novamente.");
+              mostrarNotificacao("Senha incorreta. Tente novamente.", "Login-password-incorreta");
             }
           } else {
-            mostrarNotificacao("Nome de usuário não encontrado.");
+            mostrarNotificacao("Nome de usuário não encontrado.", "Login-usuario-nao-encontrado");
           }
         })
         .catch((error) => {
           console.error("Erro ao buscar usuário: ", error);
         });
     } else {
-      mostrarNotificacao("Preencha o nome de usuário e senha.");
+      mostrarNotificacao("Preencha o nome de usuário e senha.", "preencha");
     }
   });
   logoutButton.addEventListener("click", () => {
